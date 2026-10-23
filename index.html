@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="ALPHA — premium clothing for men and women. Tees, shirts, kurtas, kurtis, sarees, jeans, hoodies and dresses. Cash on delivery and UPI.">
+<meta name="theme-color" content="#0d0c0b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%230d0c0b'/%3E%3Cpath d='M24 11.2 31.8 33.6h-3.9L22.2 16.4Z' fill='%23c8ad7f'/%3E%3Cpath d='M23 14.2 16.3 33.6M13.8 33.6h5.2M26 33.6h8' stroke='%23c8ad7f' stroke-width='1.6'/%3E%3Ccircle cx='24.4' cy='27' r='1.6' fill='%23c8ad7f'/%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>ALPHA Storefront</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Jost:wght@400;500&display=swap">
+<style>
+/* Layout: a dark showroom — garments hang on a gold rail, looks fan out on a table, one piece turns on a plinth; quiet grids below */
+:root{
+  --ink:#0d0c0b; --ink-2:#151311; --ink-3:#1d1a17; --line:#2b2723;
+  --bone:#ece6db; --mute:#9b9287; --gold:#c8ad7f; --oxblood:#6b2129;
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --nav:"Jost","Futura","Century Gothic","Helvetica Neue",sans-serif;
+  --gut-l:max(16px,env(safe-area-inset-left,0px)); --gut-r:max(16px,env(safe-area-inset-right,0px));
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--ink);color:var(--bone);font-family:var(--body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;letter-spacing:-.01em}
+
+/* header */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--ink) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.mark{font-family:var(--display);font-size:24px;letter-spacing:.32em;font-weight:500;padding-left:.32em}
+.nav{display:flex;gap:26px;font-family:var(--nav);font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.nav button{color:var(--mute);transition:color .2s;text-transform:inherit;letter-spacing:inherit}
+.nav button,.bagbtn,.sl{text-transform:uppercase}
+.nav button:hover,.nav button.on{color:var(--bone)}
+.tools{margin-left:auto;display:flex;align-items:center;gap:14px}
+.search{display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding:4px 0;width:180px}
+.search input{background:none;border:0;color:var(--bone);font-family:var(--nav);font-size:12px;letter-spacing:.12em;width:100%;outline:none}
+.search input::placeholder{color:var(--mute)}
+.bagbtn{display:flex;align-items:center;gap:8px;font-family:var(--nav);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--line);border-radius:999px;transition:border-color .2s}
+.bagbtn:hover{border-color:var(--gold)}
+.count{font-family:var(--mono);font-size:11px;background:var(--gold);color:var(--ink);border-radius:999px;min-width:18px;height:18px;display:inline-grid;place-items:center;padding:0 5px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:34px;height:34px;flex:none}
+.brand .mark{font-size:22px}
+.burger{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:grid;place-content:center;gap:5px;flex:none;transition:border-color .2s}
+.burger:hover{border-color:var(--gold)}
+.burger span{display:block;width:18px;height:1.5px;background:var(--bone);transition:transform .35s var(--ease),opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.side{position:fixed;z-index:80;top:0;left:0;bottom:0;width:min(400px,90vw);background:var(--ink-2);border-right:1px solid var(--line);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);animation:inL .45s var(--ease)}
+@keyframes inL{from{transform:translateX(-48px)}}
+.side .dh{gap:12px}
+.side nav{flex:1;overflow:auto;padding:12px 24px 24px;display:grid;align-content:start;gap:0}
+.side .grp{padding:12px 0 6px}
+.sl{display:flex;justify-content:space-between;align-items:baseline;gap:12px;width:100%;text-align:left;padding:11px 0;border-bottom:1px solid var(--line);font-family:var(--nav);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;line-height:1.3;padding-block:10px;transition:color .2s,padding .3s var(--ease)}
+.sl:hover{color:var(--gold);padding-left:6px}
+.sl small{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em}
+.sl.hl{color:var(--gold)}
+.side .minor{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;padding-top:16px;font-family:var(--nav);letter-spacing:.1em;font-size:12px;color:var(--mute)}
+.side .minor button{text-align:left;padding:4px 0}
+.side .minor button:hover{color:var(--bone)}
+/* real photos */
+img.cut{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(0,0,0,.55));transition:transform .7s var(--ease)}
+img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.card:hover .shot img{transform:scale(1.04)}
+.hang.ph{width:var(--side,84px);transition:width .7s var(--ease),opacity .4s;margin:0 -4px}
+.hang.ph.on{width:var(--w,240px)}
+.hang.ph .lift{perspective:1100px}
+.hang.ph .htag{opacity:0;transition:opacity .3s .25s}
+.hang.ph.on .htag{opacity:1}
+.hang.ph .lift img{position:absolute;top:33px;left:50%;transform:translateX(-50%) rotateY(var(--ry,72deg));transform-origin:50% 0;height:250px;width:auto;max-width:none;filter:brightness(.62) drop-shadow(0 22px 20px rgba(0,0,0,.6));transition:transform .8s var(--ease),filter .8s;pointer-events:none;-webkit-user-drag:none}
+.hang.ph.on .lift img{transform:translateX(-50%) rotateY(0deg);filter:brightness(1) drop-shadow(0 26px 24px rgba(0,0,0,.65))}
+.hang.ph.on .lift{transform:translateY(10px) scale(1.1);filter:none}
+.hang.ph .hook{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:22px;height:44px}
+.hang.ph .htag{top:84px;left:auto;right:14%}
+.lk img.cut{inset:0;width:100%;height:100%;filter:none}
+.focus .big img{height:100%;max-height:440px;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 26px 30px rgba(0,0,0,.6))}
+.viewer img.cut{inset:4%;width:92%;height:92%}
+.cat.photo{justify-content:space-between}
+.cat.photo img.ph{opacity:.9}
+.cat.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,12,11,.55),transparent 30%,transparent 55%,rgba(13,12,11,.92));pointer-events:none}
+.cat.photo .label,.cat.photo h3{z-index:1}
+.cat:hover img{transform:scale(1.05)}
+.editorial{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:4px;overflow:hidden;margin-top:12px}
+.editorial img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* most ordered */
+.best{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bc{display:grid;grid-template-columns:auto 96px 1fr;gap:16px;align-items:center;padding:16px 18px 16px 14px;background:var(--ink-2);border:1px solid var(--line);border-radius:4px;text-align:left;transition:border-color .3s;min-width:0}
+.bc:hover{border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
+.bc .rk{font-family:var(--display);font-size:54px;line-height:1;width:44px;text-align:center;color:var(--mute)}
+.bc:nth-child(-n+3) .rk{color:var(--gold)}
+.bc .th{position:relative;aspect-ratio:3/4;background:var(--ink-3);border-radius:3px}
+.bc .th svg{position:absolute;inset:8%;width:84%;height:84%}
+.bc h3{font-family:var(--body);font-size:14px;font-weight:500;line-height:1.35}
+.bc .od{display:block;font-size:12px;color:var(--mute);margin:4px 0 8px}
+.meter{display:block;height:2px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:10px}
+.meter i{display:block;height:100%;background:var(--gold)}
+.bought{font-size:12px;color:var(--mute)}
+.bought b{color:var(--bone);font-weight:500}
+.shophead{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.sort{display:flex;align-items:center;gap:10px}
+.sort select{background:var(--ink-2);color:var(--bone);border:1px solid var(--line);border-radius:999px;padding:8px 32px 8px 14px;font:inherit;font-size:12px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--mute) 50%),linear-gradient(135deg,var(--mute) 50%,transparent 50%);background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px;background-repeat:no-repeat;cursor:pointer}
+.sort select:focus-visible{outline:1px solid var(--gold)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 24px;border-radius:999px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s}
+.btn.solid{background:var(--bone);color:var(--ink)}
+.btn.solid:hover{background:var(--gold)}
+.btn.ghost{border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--bone)}
+.price{font-family:var(--mono);font-size:13px;color:var(--gold);white-space:nowrap;font-variant-numeric:tabular-nums}
+.was{font-family:var(--mono);font-size:12px;color:var(--mute);text-decoration:line-through;margin-left:8px}
+
+/* ---------- hero: the rail ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding-block:40px 48px}
+.hero-top{display:flex;justify-content:center;gap:18px;align-items:center}
+.hero-top .label:first-child{color:var(--bone)}
+.hero-top i{width:24px;height:1px;background:var(--line)}
+.ghostword{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);font-family:var(--display);font-size:clamp(140px,26vw,380px);letter-spacing:.18em;padding-left:.18em;color:var(--ink-3);pointer-events:none;white-space:nowrap;line-height:1}
+.rail{position:relative;margin-top:28px;height:360px;touch-action:pan-y;cursor:grab;user-select:none}
+.rail:active{cursor:grabbing}
+.rod{position:absolute;left:0;right:0;top:22px;height:3px;background:linear-gradient(180deg,#e3cfa6,var(--gold) 50%,#7d6a48);box-shadow:0 6px 14px rgba(0,0,0,.6);z-index:1}
+.track{position:absolute;left:0;top:0;display:flex;gap:10px;will-change:transform;z-index:2}
+.hang{position:relative;width:200px;height:310px;flex:none;transition:opacity .4s}
+.rail.hot .hang:not(.on){opacity:.45}
+.sw{position:absolute;inset:0;transform-origin:50% 22px;animation:sway 7s ease-in-out infinite;animation-delay:var(--d)}
+.lift{position:absolute;inset:0;transform-origin:50% 22px;transition:transform .55s var(--ease),filter .55s}
+.hang.on .lift{transform:translateY(14px) scale(1.16);filter:drop-shadow(0 30px 30px rgba(0,0,0,.7))}
+.hang svg{width:100%;height:100%;display:block;pointer-events:none}
+.htag{position:absolute;top:58px;left:58%;z-index:3;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;background:var(--bone);color:var(--ink);padding:3px 6px;border-radius:2px;transform:rotate(8deg);transform-origin:top left}
+.htag.sale{background:var(--oxblood);color:var(--bone)}
+@keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+.caption{position:relative;z-index:3;text-align:center;display:grid;gap:8px;justify-items:center;margin-top:8px;min-height:150px}
+.caption h1{font-size:clamp(30px,4vw,46px);line-height:1.05}
+.caption p{margin:0;color:var(--mute);max-width:46ch}
+.caption .row{display:flex;gap:12px;align-items:center}
+.hint{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+
+/* strip */
+.strip{border-bottom:1px solid var(--line);overflow:hidden}
+.strip .row{display:flex;gap:56px;white-space:nowrap;padding:14px 0;animation:slide 40s linear infinite;width:max-content}
+.strip span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.strip span::before{content:"◆";color:var(--gold);margin-right:14px;font-size:8px;vertical-align:2px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+section.block{padding-block:96px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.head h2{font-size:clamp(36px,5vw,64px);line-height:1}
+.head h2 em{font-style:italic;color:var(--gold)}
+.head p{margin:8px 0 0;color:var(--mute);max-width:44ch}
+
+/* ---------- looks: outfit stacks ---------- */
+.looks{background:var(--ink-2);border-block:1px solid var(--line)}
+.table{position:relative;container-type:inline-size;height:clamp(380px,52vw,560px);border:1px solid var(--line);border-radius:6px;background:radial-gradient(ellipse at 50% 60%,var(--ink-3),var(--ink-2) 70%);overflow:hidden}
+.table .num{position:absolute;left:24px;bottom:18px;font-family:var(--display);font-size:56px;line-height:1;z-index:4}
+.table .num small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--mute);text-transform:uppercase;margin-top:6px}
+.table .ctl{position:absolute;right:20px;bottom:20px;display:flex;align-items:center;gap:14px;z-index:4}
+.arrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .2s}
+.arrow:hover{border-color:var(--bone)}
+.pips{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:8px;z-index:4}
+.pips button{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .3s,width .3s}
+.pips button.on{background:var(--bone);width:22px;border-radius:4px}
+.stack{position:absolute;inset:0}
+.lk{--u:.11cqw;--x:var(--x0);--y:var(--y0);--r:var(--r0);--k:1;position:absolute;left:50%;top:46%;width:min(27cqw,250px);aspect-ratio:200/240;transform:translate(-50%,-50%) translate(calc(var(--x)*var(--u)),calc(var(--y)*var(--u))) rotate(calc(var(--r)*1deg)) scale(var(--k));transition:transform .7s var(--ease),filter .5s;filter:drop-shadow(0 18px 22px rgba(0,0,0,.55))}
+.lk svg{width:100%;height:100%;display:block}
+.stack:hover .lk,.stack:focus-within .lk{--x:var(--x1);--y:var(--y1);--r:var(--r1)}
+.lk:hover,.lk:focus-visible{--k:1.1;z-index:9!important;filter:drop-shadow(0 30px 30px rgba(0,0,0,.7))}
+.stack .tip{position:absolute;top:18px;left:50%;transform:translateX(-50%);z-index:4;text-align:center}
+.focus{position:absolute;inset:0;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:24px;padding:24px 32px 80px;z-index:5;background:var(--ink-2)}
+.focus .big{height:100%;max-height:440px;display:grid;place-items:center;animation:pop .6s var(--ease)}
+.focus .big svg{height:100%;width:auto;max-width:100%;filter:drop-shadow(0 26px 30px rgba(0,0,0,.6))}
+.focus .info{display:grid;gap:14px;min-width:0}
+.focus h3{font-size:clamp(28px,3.4vw,40px);line-height:1.05}
+.focus p{margin:0;color:var(--mute);font-size:14px}
+@keyframes pop{from{transform:scale(.9) translateY(12px)}}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.col{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);outline-offset:3px}
+.col.on{outline:1px solid var(--gold)}
+
+/* ---------- turntable ---------- */
+.turn{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.plinth{position:relative;aspect-ratio:5/4;max-width:100%;background:#050504;border:1px solid var(--line);border-radius:6px;overflow:hidden;cursor:grab;touch-action:pan-y}
+.plinth:active{cursor:grabbing}
+.plinth canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.plinth .hint{position:absolute;left:18px;bottom:16px}
+.plinth .fallback{position:absolute;inset:0;display:grid;place-items:center;padding:20%}
+.tside{display:grid;gap:22px;min-width:0}
+.tside h2{font-size:clamp(36px,4.6vw,58px);line-height:1}
+.tside h2 em{font-style:italic;color:var(--gold)}
+.tside p{margin:0;color:var(--mute);max-width:42ch}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:12px;letter-spacing:.06em;color:var(--mute);transition:all .2s}
+.chip:hover{color:var(--bone)}
+.chip.on{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+.spec dt{color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding-top:2px}
+.spec dd{margin:0}
+
+/* departments */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;perspective:1000px}
+.cat{position:relative;aspect-ratio:4/5;max-width:100%;background:var(--ink-2);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:20px;text-align:left;transition:transform .5s var(--ease),border-color .3s;transform-style:preserve-3d}
+.cat:hover{border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
+.cat svg{position:absolute;inset:14% 12% 18%;width:76%;height:68%;transition:transform .6s var(--ease)}
+.cat:hover svg{transform:translateZ(40px) scale(1.04)}
+.cat .label,.cat h3{position:relative}
+.cat h3{font-size:26px;line-height:1.05}
+.cat small{display:block;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:6px;letter-spacing:.08em}
+
+/* products */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px 18px}
+.card{display:grid;gap:14px;min-width:0;align-content:start}
+.shot{position:relative;aspect-ratio:3/4;max-width:100%;background:var(--ink-2);border-radius:4px;overflow:hidden;cursor:pointer}
+.shot svg{position:absolute;inset:10%;width:80%;height:80%;transition:transform .7s var(--ease)}
+.card:hover .shot svg{transform:scale(1.05) rotate(-1deg)}
+.shot .tag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;background:var(--ink);border:1px solid var(--line);border-radius:2px}
+.heart{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--ink) 70%,transparent);font-size:15px;color:var(--mute)}
+.heart.on{color:var(--gold)}
+.quick{position:absolute;left:12px;right:12px;bottom:12px;padding:12px;background:var(--bone);color:var(--ink);border-radius:999px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;transform:translateY(130%);transition:transform .35s var(--ease)}
+.card:hover .quick,.quick:focus-visible{transform:none}
+.meta{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.meta h3{font-family:var(--body);font-size:14px;font-weight:500;line-height:1.35}
+.meta .fab{font-size:12px;color:var(--mute);margin-top:2px}
+.dots{display:flex;gap:6px}
+.dots i{width:12px;height:12px;border-radius:50%;border:1px solid var(--line)}
+.empty{grid-column:1/-1;padding:60px 0;text-align:center;color:var(--mute)}
+
+/* fabric notes */
+.notes{background:var(--ink-2);border-block:1px solid var(--line)}
+.notes .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;padding-block:96px}
+.notes h2{font-size:clamp(40px,5.6vw,76px);line-height:.98}
+.notes h2 em{font-style:italic;color:var(--gold)}
+.fabric{display:grid;grid-template-columns:120px 1fr auto;gap:24px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline}
+.fabric:last-child{border-bottom:1px solid var(--line)}
+.fabric h3{font-size:24px}
+.fabric p{margin:0;color:var(--mute);font-size:14px;max-width:52ch}
+
+.services{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:4px}
+.svc{padding:28px;display:grid;gap:8px;border-right:1px solid var(--line);align-content:start}
+.svc:last-child{border-right:0}
+.svc h3{font-family:var(--body);font-size:15px;font-weight:500}
+.svc p{margin:0;color:var(--mute);font-size:13px}
+
+footer{border-top:1px solid var(--line);padding-block:56px 40px}
+.foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:32px}
+.foot .mark{font-size:44px}
+.foot ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px;font-size:13px;color:var(--mute)}
+.fine{margin-top:48px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* overlay, modal, drawer */
+.scrim{position:fixed;inset:0;z-index:70;background:rgba(5,4,3,.66);backdrop-filter:blur(4px)}
+.modal{position:fixed;z-index:80;left:50%;top:50%;transform:translate(-50%,-50%);width:min(980px,calc(100vw - 32px));max-height:calc(100vh - 48px);overflow:auto;background:var(--ink-2);border:1px solid var(--line);border-radius:6px;display:grid;grid-template-columns:1.1fr 1fr}
+.viewer{position:relative;background:var(--ink-3);min-height:520px;perspective:900px;cursor:grab;touch-action:none;user-select:none}
+.viewer .obj{position:absolute;inset:8%;transform-style:preserve-3d}
+.viewer svg{width:100%;height:100%}
+.viewer .hint{position:absolute;left:16px;bottom:14px}
+.pd{padding:36px;display:grid;gap:20px;align-content:start;min-width:0}
+.pd h2{font-size:34px;line-height:1.05}
+.pd p{margin:0;color:var(--mute);font-size:14px}
+.sz{min-width:46px;padding:9px 12px;border:1px solid var(--line);border-radius:3px;font-family:var(--mono);font-size:12px;transition:all .2s}
+.sz.on{border-color:var(--bone);background:var(--bone);color:var(--ink)}
+.x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);z-index:3;background:var(--ink-2)}
+.drawer{position:fixed;z-index:80;top:0;right:0;bottom:0;width:min(440px,100vw);background:var(--ink-2);border-left:1px solid var(--line);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px);animation:in .4s var(--ease)}
+@keyframes in{from{transform:translateX(40px)}}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line)}
+.dh h2{font-size:26px}
+.dbody{flex:1;overflow:auto;padding:8px 24px}
+.line{display:grid;grid-template-columns:72px 1fr auto;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+.line .th{aspect-ratio:3/4;background:var(--ink-3);border-radius:3px;position:relative}
+.line .th svg{position:absolute;inset:8%;width:84%;height:84%}
+.line h3{font-family:var(--body);font-size:13px;font-weight:500}
+.line small{color:var(--mute);font-size:12px;font-family:var(--mono)}
+.qty{display:flex;align-items:center;gap:10px;margin-top:6px;font-family:var(--mono);font-size:12px}
+.qty button{width:24px;height:24px;border:1px solid var(--line);border-radius:50%}
+.rm{font-size:11px;color:var(--mute);text-decoration:underline;margin-left:8px}
+.dfoot{padding:20px 24px;border-top:1px solid var(--line);display:grid;gap:14px}
+.sum{display:grid;gap:6px;font-size:13px}
+.sum div{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+.sum .tot{font-size:16px;padding-top:8px;border-top:1px solid var(--line);margin-top:4px}
+.sum .tot span:last-child{font-family:var(--mono);color:var(--gold)}
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pay label{position:relative;border:1px solid var(--line);border-radius:4px;padding:12px;cursor:pointer;display:grid;gap:2px;font-size:13px}
+.pay label small{color:var(--mute);font-size:11px}
+.pay input{position:absolute;opacity:0}
+.pay label:has(input:checked){border-color:var(--gold)}
+.pay label:has(input:focus-visible){outline:1px solid var(--gold)}
+.fld{display:grid;gap:6px}
+.fld input{background:var(--ink);border:1px solid var(--line);border-radius:3px;padding:11px 12px;color:var(--bone);font:inherit;font-size:14px}
+.fld input:focus{border-color:var(--gold);outline:none}
+.err{color:#e08a7a;font-size:12px;margin:0}
+.done{text-align:center;padding:48px 8px;display:grid;gap:12px;justify-items:center}
+.done h3{font-size:30px}
+.demo{font-size:11px;color:var(--mute);text-align:center;margin:0}
+.toast{position:fixed;z-index:90;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--bone);color:var(--ink);padding:12px 20px;border-radius:999px;font-size:13px}
+
+@media (max-width:1000px){
+  .nav{display:none}
+  .best{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .notes .wrap,.turn{grid-template-columns:1fr;gap:40px}
+  .services{grid-template-columns:repeat(2,1fr)}
+  .svc:nth-child(2){border-right:0}.svc:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .search{display:none}
+  .best{grid-template-columns:1fr}
+  .bar .wrap{gap:14px}
+  .rail{height:290px}.hang{width:150px;height:250px}.hang.ph .lift img{height:190px;top:30px}.hang.ph .hook{top:4px;height:40px}.rod{top:16px}.sw,.lift{transform-origin:50% 16px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:28px 12px}
+  .modal{grid-template-columns:1fr}.viewer{min-height:340px}.pd{padding:24px}
+  .fabric{grid-template-columns:1fr;gap:6px}
+  .services{grid-template-columns:1fr}.svc{border-right:0;border-bottom:1px solid var(--line)}.svc:last-child{border-bottom:0}
+  section.block{padding-block:64px}
+  .lk{width:34cqw;--u:.15cqw}
+  .focus{grid-template-columns:1fr;padding:16px 16px 76px;align-content:start}
+  .focus .big{max-height:200px}
+  .table{height:520px}
+  .table .num{font-size:40px}
+  .pips{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="layer" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <a class="brand" href="#top" aria-label="ALPHA home"><span id="logoSlot"></span><span class="mark">ALPHA</span></a>
+    <nav class="nav" id="nav" aria-label="Departments"></nav>
+    <div class="tools">
+      <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Search ALPHA" aria-label="Search products"></label>
+      <button class="bagbtn" id="bagBtn">Bag <span class="count" id="count">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="New collection">
+    <div class="ghostword" aria-hidden="true">ALPHA</div>
+    <div class="wrap hero-top"><span class="label">New collection</span><i></i><span class="label">Festive &amp; Winter 2026</span></div>
+    <div class="rail" id="rail"><div class="rod"></div><div class="track" id="track"></div></div>
+    <div class="wrap caption" id="caption" aria-live="polite"></div>
+  </section>
+
+  <div class="strip" aria-label="Store benefits"><div class="row" id="strip"></div></div>
+
+  <section class="block" id="best">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="label">Most ordered · last 30 days</span><h2>What everyone is <em>buying.</em></h2></div>
+        <button class="btn ghost" id="seeBest">Shop by most ordered</button>
+      </div>
+      <div class="best" id="bestList"></div>
+    </div>
+  </section>
+
+  <section class="block looks" id="looks">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="label">The looks</span><h2>Wear it <em>together.</em></h2><p>Outfits styled by our team. Hover to spread the look, then pick a piece to see it on its own.</p></div>
+      </div>
+      <div class="table" id="table"></div>
+    </div>
+  </section>
+
+  <section class="block" id="turntable">
+    <div class="wrap turn">
+      <div class="plinth" id="plinth"><canvas id="tt" aria-label="3D garment viewer"></canvas><span class="hint">Drag to tilt</span></div>
+      <div class="tside">
+        <span class="label">In the round</span>
+        <h2>See every <em>seam.</em></h2>
+        <p>Tilt a piece on the plinth to see its cut and fabric up close, with fabric and price beside it.</p>
+        <div class="chips" id="ttTypes" role="group" aria-label="Garment"></div>
+        <div style="display:grid;gap:10px"><span class="label">Colour</span><div class="opts" id="ttCols"></div></div>
+        <dl class="spec" id="ttSpec"></dl>
+        <div><button class="btn solid" id="ttShop">Shop this piece</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="departments" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>Every wardrobe, <em>one house.</em></h2><span class="label" id="catCount"></span></div>
+      <div class="cats" id="cats"></div>
+    </div>
+  </section>
+
+  <section class="block" id="shop" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>New <em>arrivals</em></h2><div class="shophead"><div class="chips" id="chips" role="group" aria-label="Filter by department"></div><label class="sort"><span class="label">Sort</span><select id="sort"><option value="featured">Featured</option><option value="ord">Most ordered</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></label></div></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="notes" id="fabrics">
+    <div class="wrap">
+      <div style="display:grid;gap:20px;align-content:start">
+        <span class="label">Fabric notes</span>
+        <h2>We start with the <em>cloth.</em></h2>
+        <div class="editorial" style="aspect-ratio:4/5"><img src="img/ai/lookbook.webp" alt="ALPHA lookbook: tees, denim and a festive saree" loading="lazy"></div>
+        <p style="color:var(--mute);margin:0;max-width:40ch">Three weaves from South India anchor this season. Each product page lists the weave, the weight and where it was made.</p>
+      </div>
+      <div>
+        <div class="fabric"><span class="label">Telangana</span><div><h3>Pochampally ikat</h3><p>The yarn is tie-dyed before it reaches the loom, so the pattern blurs softly at its edges. GI-tagged handloom.</p></div><span class="price">Dress · Kurta</span></div>
+        <div class="fabric"><span class="label">Andhra Pradesh</span><div><h3>Mangalagiri cotton</h3><p>A fine, crisp handloom cotton with a plain body and the signature Nizam border. Breathes well through humid summers.</p></div><span class="price">Kurta sets</span></div>
+        <div class="fabric"><span class="label">Tamil Nadu</span><div><h3>Kanchipuram silk</h3><p>Heavy mulberry silk with zari borders woven separately and interlocked with the body. Made to be passed down.</p></div><span class="price">Sarees</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="services">
+        <div class="svc"><span class="label">Pay</span><h3>UPI, cards or cash on delivery</h3><p>Secure checkout through Razorpay. COD on orders up to ₹15,000.</p></div>
+        <div class="svc"><span class="label">Ship</span><h3>Free over ₹2,999</h3><p>Dispatched in 48 hours. Pan-India delivery.</p></div>
+        <div class="svc"><span class="label">Return</span><h3>15-day returns</h3><p>Free pickup from your door. Refund to source or store credit.</p></div>
+        <div class="svc"><span class="label">Fit</span><h3>Size help on every page</h3><p>Body and garment measurements in cm, plus a fit note from our team.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><div class="brand"><span class="logoSlot"></span><span class="mark">ALPHA</span></div><p style="color:var(--mute);font-size:13px;max-width:34ch">Considered clothing for every member of the family.</p></div>
+      <div><span class="label">Shop</span><ul><li>Women</li><li>Men</li><li>Ethnic &amp; Festive</li><li>Kids</li></ul></div>
+      <div><span class="label">Help</span><ul><li>Track order</li><li>Returns</li><li>Size guide</li><li>Contact</li></ul></div>
+      <div><span class="label">House</span><ul><li>About ALPHA</li><li>Fabric notes</li><li>Stores</li><li>Careers</li></ul></div>
+    </div>
+    <div class="fine"><span class="label">© 2026 ALPHA</span><span class="label">Design prototype · placeholder imagery</span></div>
+  </div>
+</footer>
+
+<div id="layer"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const inr=n=>"₹"+n.toLocaleString("en-IN");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+/* ---------- data ---------- */
+const DEPTS=[{"id": "all", "name": "All"}, {"id": "women", "name": "Women"}, {"id": "men", "name": "Men"}, {"id": "tees", "name": "T-Shirts & Polos", "note": "Crew · Henley · Polo", "tile": 1}, {"id": "shirts", "name": "Shirts", "note": "Denim · Linen · Henley", "tile": 1}, {"id": "kurtas", "name": "Men's Kurtas", "note": "Silk · Linen · Short", "tile": 1}, {"id": "ethnic", "name": "Kurtis & Sarees", "note": "Kurtis · Sets · Sarees", "tile": 1}, {"id": "jeans", "name": "Jeans & Chinos", "note": "Straight · Mom · Skinny", "tile": 1}, {"id": "hoodies", "name": "Hoodies", "note": "Pullover · Zip · Longline", "tile": 1}, {"id": "dresses", "name": "Dresses", "note": "Satin slips", "tile": 1}, {"id": "jackets", "name": "Jackets", "note": "Denim · Overshirt · Vest", "tile": 1}];
+const P=[{"id": "b01", "name": "Heavyweight Boxy Tee", "cats": ["men", "women", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-cream", "cut": 1, "price": 1490, "was": null, "tag": "Bestseller", "fab": "Combed cotton jersey", "line": "Soft, structured cotton that holds its shape wash after wash.", "cols": ["#efe9dc"], "sizes": ["XS", "S", "M", "L", "XL", "XXL"], "ord": 6305}, {"id": "b02", "name": "Charcoal Fleece Hoodie", "cats": ["men", "women", "hoodies"], "cat": "hoodies", "type": "tee", "img": "ai/hoodie-charcoal", "cut": 1, "price": 3290, "was": null, "tag": "Bestseller", "fab": "Brushed cotton fleece", "line": "Heavy fleece, ribbed cuffs and hem, made for daily wear.", "cols": ["#3a3a3c"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 6414}, {"id": "b03", "name": "Copper-Stud Straight Jeans", "cats": ["men", "jeans"], "cat": "jeans", "type": "tee", "img": "ai/jeans-stud", "cut": 1, "price": 2690, "was": null, "tag": "New", "fab": "Cotton denim, copper studs", "line": "Five-pocket denim with copper studs and a worn-in fade.", "cols": ["#3b5f8f"], "sizes": ["28", "30", "32", "34", "36"], "ord": 4101}, {"id": "b04", "name": "Copper-Stud Light-Wash Jeans", "cats": ["men", "jeans"], "cat": "jeans", "type": "tee", "img": "ai/jeans-stud-light", "cut": 1, "price": 2790, "was": null, "tag": null, "fab": "Cotton denim, copper studs", "line": "Light stone wash with a scatter of copper studs.", "cols": ["#6f93bf"], "sizes": ["28", "30", "32", "34", "36"], "ord": 4560}, {"id": "b05", "name": "Navy Embroidered-Yoke Kurti", "cats": ["women", "ethnic"], "cat": "ethnic", "type": "tee", "img": "ai/kurti-navy", "cut": 1, "price": 2490, "was": null, "tag": "Festive", "fab": "Cotton, thread embroidery", "line": "Fine white embroidery on the yoke, sleeves and hem.", "cols": ["#1f2a50"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 1955}, {"id": "b06", "name": "Black Satin Slip Dress", "cats": ["women", "dresses"], "cat": "dresses", "type": "tee", "img": "ai/slip-black", "cut": 1, "price": 4990, "was": null, "tag": "Bestseller", "fab": "Satin", "line": "Bias-cut satin with fine straps that falls and moves with you.", "cols": ["#141414"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 4112}, {"id": "b07", "name": "Ivory Satin Slip Dress", "cats": ["women", "dresses"], "cat": "dresses", "type": "tee", "img": "ai/slip-ivory", "cut": 1, "price": 4990, "was": null, "tag": null, "fab": "Satin", "line": "Bias-cut satin with fine straps.", "cols": ["#efe8d6"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 4593}, {"id": "b08", "name": "Rose Satin Slip Dress", "cats": ["women", "dresses"], "cat": "dresses", "type": "tee", "img": "ai/slip-rose", "cut": 1, "price": 4990, "was": null, "tag": "New", "fab": "Satin", "line": "Bias-cut satin with fine straps.", "cols": ["#c0828a"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 4297}, {"id": "b09", "name": "Emerald Satin Slip Dress", "cats": ["women", "dresses"], "cat": "dresses", "type": "tee", "img": "ai/slip-emerald", "cut": 1, "price": 4990, "was": null, "tag": null, "fab": "Satin", "line": "Bias-cut satin with fine straps.", "cols": ["#1d5a43"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 1925}, {"id": "b10", "name": "Charcoal Pocket Tee", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-charcoal-pocket", "cut": 1, "price": 1190, "was": null, "tag": null, "fab": "Slub cotton jersey", "line": "Washed charcoal slub with a chest pocket.", "cols": ["#3d3d3d"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 1171}, {"id": "b11", "name": "Red Crew Tee", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-red", "cut": 1, "price": 999, "was": 1250, "tag": "-20%", "fab": "Combed cotton jersey", "line": "A clean, bright everyday crew neck.", "cols": ["#c0232b"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 4058}, {"id": "b12", "name": "Black Crew Tee", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-black", "cut": 1, "price": 999, "was": null, "tag": "Bestseller", "fab": "Combed cotton jersey", "line": "The black tee you'll wear every week.", "cols": ["#151515"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 5085}, {"id": "b13", "name": "Grey Tipped-Sleeve Tee", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-grey-tipped", "cut": 1, "price": 1190, "was": null, "tag": null, "fab": "Cotton melange", "line": "Heather grey with a contrast sleeve tip.", "cols": ["#8f8f8f"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 1561}, {"id": "b14", "name": "Black Henley Tee", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-black-henley", "cut": 1, "price": 1290, "was": null, "tag": null, "fab": "Cotton jersey", "line": "Short-sleeve henley with a two-button placket.", "cols": ["#161616"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 1142}, {"id": "b15", "name": "Navy Long-Sleeve Tee", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-navy-long", "cut": 1, "price": 1390, "was": null, "tag": null, "fab": "Cotton jersey", "line": "A fitted long-sleeve tee in deep navy.", "cols": ["#1e2436"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 743}, {"id": "b16", "name": "Cream Long-Sleeve Tee", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-cream-long", "cut": 1, "price": 1390, "was": null, "tag": "New", "fab": "Cotton jersey", "line": "Easy cream long-sleeve with a small chest logo.", "cols": ["#ece7dc"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 3645}, {"id": "b17", "name": "White Relaxed Tee", "cats": ["women", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-white-women", "cut": 1, "price": 899, "was": null, "tag": "Bestseller", "fab": "Combed cotton jersey", "line": "A relaxed white tee that tucks in neatly.", "cols": ["#f4f4f2"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 6310}, {"id": "b18", "name": "Grey Relaxed Tee", "cats": ["women", "tees"], "cat": "tees", "type": "tee", "img": "ai/tee-grey-women", "cut": 1, "price": 899, "was": null, "tag": null, "fab": "Cotton melange", "line": "Soft heather grey with a relaxed drop shoulder.", "cols": ["#8e8b86"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 1690}, {"id": "b19", "name": "Navy Piqué Polo", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/polo-navy", "cut": 1, "price": 1690, "was": null, "tag": null, "fab": "Cotton piqué", "line": "A classic piqué polo with a neat ribbed collar.", "cols": ["#1c2440"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 522}, {"id": "b20", "name": "Black Tipped Polo", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/polo-black", "cut": 1, "price": 1690, "was": null, "tag": null, "fab": "Cotton piqué", "line": "Black piqué with fine contrast tipping.", "cols": ["#151515"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 4728}, {"id": "b21", "name": "Cream Contrast Polo", "cats": ["men", "tees"], "cat": "tees", "type": "tee", "img": "ai/polo-cream", "cut": 1, "price": 1790, "was": null, "tag": "New", "fab": "Cotton piqué", "line": "Cream polo with a navy collar and cuffs.", "cols": ["#ece6d6"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 917}, {"id": "b22", "name": "Cream Cotton Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-cream", "cut": 1, "price": 2190, "was": null, "tag": null, "fab": "Cotton poplin", "line": "A crisp cream shirt for work and weekends.", "cols": ["#efe6d2"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 887}, {"id": "b23", "name": "Indigo Denim Popover", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-denim-popover", "cut": 1, "price": 2490, "was": null, "tag": null, "fab": "Cotton denim", "line": "Half-placket popover in deep indigo denim.", "cols": ["#2b3d5c"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 692}, {"id": "b24", "name": "Rust Henley Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-orange-henley", "cut": 1, "price": 1990, "was": null, "tag": null, "fab": "Cotton slub", "line": "Long-sleeve henley in a warm rust orange.", "cols": ["#c8572a"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 1958}, {"id": "b25", "name": "Washed Denim Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-denim-western", "cut": 1, "price": 2690, "was": null, "tag": "Bestseller", "fab": "Cotton denim", "line": "Twin flap pockets and a washed-out finish.", "cols": ["#3f5f8c"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 4581}, {"id": "b26", "name": "Sage Cotton Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-sage", "cut": 1, "price": 2190, "was": null, "tag": null, "fab": "Cotton oxford", "line": "Soft sage green with a single chest pocket.", "cols": ["#7f9a74"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 646}, {"id": "b27", "name": "Maroon Popover Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-maroon", "cut": 1, "price": 2290, "was": null, "tag": null, "fab": "Cotton twill", "line": "Deep maroon with a half placket.", "cols": ["#6a2620"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 4200}, {"id": "b28", "name": "Cream Linen Popover", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-cream-popover", "cut": 1, "price": 2490, "was": null, "tag": "New", "fab": "Linen blend", "line": "Light linen-blend popover with a patch pocket.", "cols": ["#efeae0"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 3072}, {"id": "b29", "name": "Mint Henley Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-sage-henley", "cut": 1, "price": 2190, "was": null, "tag": null, "fab": "Cotton", "line": "Long-sleeve henley in a cool mint.", "cols": ["#98b8a2"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 4008}, {"id": "b30", "name": "Ivory Pocket Henley", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-cream-henley", "cut": 1, "price": 2290, "was": null, "tag": null, "fab": "Cotton", "line": "Ivory henley with a chest pocket.", "cols": ["#ece3d0"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 2000}, {"id": "b31", "name": "Mustard Henley Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-mustard", "cut": 1, "price": 2190, "was": null, "tag": null, "fab": "Cotton", "line": "Warm mustard henley, sleeves made to roll.", "cols": ["#c48a3a"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 4652}, {"id": "b32", "name": "Navy Henley Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-navy-henley", "cut": 1, "price": 2290, "was": null, "tag": null, "fab": "Cotton", "line": "Deep navy henley with wooden buttons.", "cols": ["#1d2235"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 2314}, {"id": "b33", "name": "Printed Camp Shirt", "cats": ["men", "shirts"], "cat": "shirts", "type": "tee", "img": "ai/shirt-print", "cut": 1, "price": 2390, "was": null, "tag": "New", "fab": "Viscose", "line": "Bold abstract print, worn open over a tee.", "cols": ["#2c2a24"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 2809}, {"id": "b34", "name": "Maroon Zip Hoodie", "cats": ["men", "hoodies"], "cat": "hoodies", "type": "tee", "img": "ai/hoodie-maroon-zip", "cut": 1, "price": 3490, "was": null, "tag": "New", "fab": "Brushed cotton fleece", "line": "Full-zip hoodie with contrast drawcords.", "cols": ["#6a2128"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 4494}, {"id": "b35", "name": "Grey Pullover Hoodie", "cats": ["men", "hoodies"], "cat": "hoodies", "type": "tee", "img": "ai/hoodie-grey", "cut": 1, "price": 3190, "was": null, "tag": null, "fab": "Cotton melange fleece", "line": "Classic grey pullover with a kangaroo pocket.", "cols": ["#9a9a9a"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 437}, {"id": "b36", "name": "Black Drawstring Hoodie", "cats": ["women", "hoodies"], "cat": "hoodies", "type": "tee", "img": "ai/hoodie-black-women", "cut": 1, "price": 3290, "was": null, "tag": null, "fab": "Cotton fleece", "line": "Cropped-length hoodie with a drawstring waist.", "cols": ["#1b1d22"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 1096}, {"id": "b37", "name": "Navy Longline Hoodie", "cats": ["women", "hoodies"], "cat": "hoodies", "type": "tee", "img": "ai/hoodie-navy-long", "cut": 1, "price": 3490, "was": null, "tag": null, "fab": "Cotton fleece", "line": "Thigh-length hoodie you can wear as a dress.", "cols": ["#1f2638"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 4146}, {"id": "b38", "name": "Black Half-Zip Longline Hoodie", "cats": ["men", "women", "hoodies"], "cat": "hoodies", "type": "tee", "img": "ai/hoodie-black-long", "cut": 1, "price": 3590, "was": null, "tag": null, "fab": "Cotton fleece", "line": "Longline hood with a half zip and front pocket.", "cols": ["#141414"], "sizes": ["XS", "S", "M", "L", "XL", "XXL"], "ord": 2678}, {"id": "b39", "name": "Classic Denim Jacket", "cats": ["men", "jackets"], "cat": "jackets", "type": "tee", "img": "ai/jacket-denim", "cut": 1, "price": 3990, "was": null, "tag": "Bestseller", "fab": "Cotton denim", "line": "The trucker jacket, in a mid-blue wash.", "cols": ["#4a6f9e"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 5932}, {"id": "b40", "name": "Khaki Overshirt", "cats": ["men", "jackets"], "cat": "jackets", "type": "tee", "img": "ai/jacket-overshirt", "cut": 1, "price": 3490, "was": null, "tag": "New", "fab": "Cotton twill", "line": "A light layer with chest pockets.", "cols": ["#b8a888"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 1081}, {"id": "b41", "name": "Denim Vest", "cats": ["men", "jackets"], "cat": "jackets", "type": "tee", "img": "ai/jacket-denim-vest", "cut": 1, "price": 2490, "was": null, "tag": null, "fab": "Cotton denim", "line": "Sleeveless denim layer over a shirt or tee.", "cols": ["#3c5578"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 2480}, {"id": "b42", "name": "Mid-Blue Straight Jeans", "cats": ["men", "jeans"], "cat": "jeans", "type": "tee", "img": "ai/jeans-midblue", "cut": 1, "price": 2490, "was": null, "tag": null, "fab": "Cotton denim", "line": "A straight leg with turn-up hems.", "cols": ["#3e5f8a"], "sizes": ["28", "30", "32", "34", "36"], "ord": 2982}, {"id": "b43", "name": "Dark Wash Straight Jeans", "cats": ["men", "jeans"], "cat": "jeans", "type": "tee", "img": "ai/jeans-dark", "cut": 1, "price": 2690, "was": null, "tag": null, "fab": "Cotton denim", "line": "Deep indigo with light whiskering.", "cols": ["#26395a"], "sizes": ["28", "30", "32", "34", "36"], "ord": 2281}, {"id": "b44", "name": "High-Rise Mom Jeans", "cats": ["women", "jeans"], "cat": "jeans", "type": "tee", "img": "ai/jeans-mom", "cut": 1, "price": 2590, "was": null, "tag": "New", "fab": "Cotton denim", "line": "High waist with a tapered, cropped leg.", "cols": ["#4f6f98"], "sizes": ["24", "26", "28", "30", "32"], "ord": 4601}, {"id": "b45", "name": "Light-Wash Skinny Jeans", "cats": ["men", "jeans"], "cat": "jeans", "type": "tee", "img": "ai/jeans-light-skinny", "cut": 1, "price": 2490, "was": null, "tag": null, "fab": "Stretch denim", "line": "Slim fit in a light, sun-faded wash.", "cols": ["#86a4c7"], "sizes": ["28", "30", "32", "34", "36"], "ord": 2767}, {"id": "b46", "name": "Tan Cotton Chinos", "cats": ["men", "jeans"], "cat": "jeans", "type": "tee", "img": "ai/chinos-tan", "cut": 1, "price": 2290, "was": null, "tag": null, "fab": "Cotton twill", "line": "Slim chinos in a warm tan.", "cols": ["#b07a45"], "sizes": ["28", "30", "32", "34", "36"], "ord": 643}, {"id": "b47", "name": "Black Cotton Kurta", "cats": ["men", "kurtas"], "cat": "kurtas", "type": "tee", "img": "ai/kurta-black", "cut": 1, "price": 2290, "was": null, "tag": null, "fab": "Cotton", "line": "Straight black kurta with side slits.", "cols": ["#151515"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 975}, {"id": "b48", "name": "Red Silk Kurta", "cats": ["men", "kurtas"], "cat": "kurtas", "type": "tee", "img": "ai/kurta-red-silk", "cut": 1, "price": 3990, "was": null, "tag": "Festive", "fab": "Art silk", "line": "Rich red silk for weddings and festive nights.", "cols": ["#b0262a"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 1284}, {"id": "b49", "name": "Charcoal Silk Kurta", "cats": ["men", "kurtas"], "cat": "kurtas", "type": "tee", "img": "ai/kurta-charcoal-silk", "cut": 1, "price": 3990, "was": null, "tag": null, "fab": "Art silk", "line": "Deep charcoal with a soft sheen.", "cols": ["#3d3a37"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 3680}, {"id": "b50", "name": "Beige Linen Kurta", "cats": ["men", "kurtas"], "cat": "kurtas", "type": "tee", "img": "ai/kurta-beige", "cut": 1, "price": 2790, "was": null, "tag": "New", "fab": "Linen blend", "line": "Beige linen-blend kurta with a chest pocket.", "cols": ["#d8cbb1"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 1283}, {"id": "b51", "name": "Grey Textured Kurta", "cats": ["men", "kurtas"], "cat": "kurtas", "type": "tee", "img": "ai/kurta-grey", "cut": 1, "price": 2490, "was": null, "tag": "Bestseller", "fab": "Cotton", "line": "Mandarin collar kurta in a textured grey.", "cols": ["#8b8a88"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 4983}, {"id": "b52", "name": "Denim Short Kurta", "cats": ["men", "kurtas"], "cat": "kurtas", "type": "tee", "img": "ai/kurta-denim-short", "cut": 1, "price": 2190, "was": null, "tag": null, "fab": "Chambray", "line": "Hip-length chambray kurta with patch pockets.", "cols": ["#8fb0d2"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 3566}, {"id": "b53", "name": "Mustard Short Kurta", "cats": ["men", "kurtas"], "cat": "kurtas", "type": "tee", "img": "ai/kurta-mustard-short", "cut": 1, "price": 1990, "was": null, "tag": null, "fab": "Cotton", "line": "A bright, easy short kurta for day events.", "cols": ["#e3a62e"], "sizes": ["S", "M", "L", "XL", "XXL"], "ord": 947}, {"id": "b54", "name": "Printed Cotton Kurti", "cats": ["women", "ethnic"], "cat": "ethnic", "type": "tee", "img": "ai/kurti-print", "cut": 1, "price": 1890, "was": null, "tag": null, "fab": "Cotton print", "line": "Ivory kurti with a scattered motif print.", "cols": ["#efe8dc"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 538}, {"id": "b55", "name": "Black Collar Kurti", "cats": ["women", "ethnic"], "cat": "ethnic", "type": "tee", "img": "ai/kurti-black", "cut": 1, "price": 1990, "was": null, "tag": null, "fab": "Cotton", "line": "A collared black kurti for everyday wear.", "cols": ["#151515"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 404}, {"id": "b56", "name": "Rust Tunic Kurti", "cats": ["women", "ethnic"], "cat": "ethnic", "type": "tee", "img": "ai/tunic-orange", "cut": 1, "price": 1790, "was": null, "tag": null, "fab": "Cotton", "line": "Rust tunic with a shirt collar and roll-up sleeves.", "cols": ["#d4703e"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 2149}, {"id": "b57", "name": "Navy Kurta with Brocade Dupatta", "cats": ["women", "ethnic"], "cat": "ethnic", "type": "tee", "img": "ai/kurta-navy-dupatta", "cut": 1, "price": 3490, "was": null, "tag": "Festive", "fab": "Cotton, brocade dupatta", "line": "Navy kurta paired with a gold brocade dupatta.", "cols": ["#1f2b55"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 2118}, {"id": "b58", "name": "Coral Embroidered Kurta Set", "cats": ["women", "ethnic"], "cat": "ethnic", "type": "tee", "img": "ai/kurta-set-coral", "cut": 1, "price": 3290, "was": null, "tag": "New", "fab": "Cotton silk, zari embroidery", "line": "Coral kurta with an embroidered yoke and straight pants.", "cols": ["#e9785e"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 828}, {"id": "b59", "name": "Cream Saree with Red Border", "cats": ["women", "ethnic"], "cat": "ethnic", "type": "tee", "img": "ai/saree-cream", "cut": 1, "price": 4590, "was": null, "tag": "Festive", "fab": "Cotton silk", "line": "Cream body with a woven red border and blue blouse.", "cols": ["#efe6d0"], "sizes": ["Free size"], "ord": 4250}, {"id": "b60", "name": "Ivory Henley Top", "cats": ["women", "tees"], "cat": "tees", "type": "tee", "img": "ai/top-henley-women", "cut": 1, "price": 1490, "was": null, "tag": null, "fab": "Linen blend", "line": "Ivory henley top with gold snap buttons and a pocket.", "cols": ["#efe9dc"], "sizes": ["XS", "S", "M", "L", "XL"], "ord": 3475}];
+DEPTS.splice(0,DEPTS.length,...DEPTS.filter(d=>d.id==="all"||P.some(p=>p.cats.includes(d.id))));
+const TILE={tees:"ai/tee-black",shirts:"ai/shirt-denim-western",kurtas:"ai/kurta-red-silk",ethnic:"ai/kurta-set-coral",jeans:"ai/jeans-stud",hoodies:"ai/hoodie-maroon-zip",dresses:"ai/slip-black",jackets:"ai/jacket-denim"};
+DEPTS.forEach(d=>{if(d.tile){d.img=TILE[d.id];d.cut=1}});
+const RANKED=[...P].sort((a,b)=>b.ord-a.ord);
+const FEAT0=(()=>{const g={};P.forEach(p=>(g[p.cat]=g[p.cat]||[]).push(p));const ks=Object.keys(g),o=[];for(let i=0;o.length<P.length;i++)ks.forEach(k=>g[k][i]&&o.push(g[k][i]));return o})();
+const FEAT=FEAT0;
+const BEST=new Set(RANKED.slice(0,3).map(p=>p.id));
+const kfmt=n=>n>=1000?(n/1000).toFixed(1).replace(/\.0$/,"")+"k":String(n);
+const byId=id=>P.find(p=>p.id===id);
+const LOGO=()=>`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2.5 45.5 24 24 45.5 2.5 24Z" fill="none" stroke="#c8ad7f" stroke-width="1.3"/><path d="M24 11.2 31.8 33.6h-3.9L22.2 16.4Z" fill="#c8ad7f"/><path d="M23 14.2 16.3 33.6" stroke="#c8ad7f" stroke-width="1.2" fill="none"/><path d="M13.8 33.6h5.2M26 33.6h8" stroke="#c8ad7f" stroke-width="1.2"/><circle cx="24.4" cy="27" r="1.45" fill="#c8ad7f"/></svg>`;
+
+/* ---------- garment drawings ---------- */
+const SHAPES={
+  tee:{d:"M60 40 L85 30 Q100 44 115 30 L140 40 L172 72 L150 94 L138 82 L138 204 L62 204 L62 82 L50 94 L28 72 Z",l:["M85 30 Q100 50 115 30","M50 94 L62 82","M150 94 L138 82"]},
+  jersey:{d:"M58 40 L84 30 L100 54 L116 30 L142 40 L174 76 L152 98 L140 86 L140 206 L60 206 L60 86 L48 98 L26 76 Z",l:["M84 30 L100 54 L116 30"],stripe:["M36 66 L56 86","M42 60 L62 80","M164 66 L144 86","M158 60 L138 80"]},
+  shirt:{d:"M62 38 L86 28 L100 46 L114 28 L138 38 L168 152 L150 158 L138 92 L138 206 L62 206 L62 92 L50 158 L32 152 Z",l:["M100 46 L100 206","M86 28 L94 56 L100 46 L106 56 L114 28","M72 70 L88 70 L88 86 L72 86"]},
+  dress:{d:"M80 30 L92 26 Q100 38 108 26 L120 30 L122 70 Q118 92 126 102 L162 212 Q100 226 38 212 L74 102 Q82 92 78 70 Z",l:["M76 100 Q100 108 124 100","M100 108 L96 220"]},
+  frock:{d:"M82 44 L94 40 Q100 48 106 40 L118 44 L120 84 L150 132 L140 136 L160 196 Q100 210 40 196 L60 136 L50 132 L80 84 Z",l:["M80 84 Q100 92 120 84","M60 136 Q100 146 140 136"]},
+  kurta:{d:"M66 34 L88 26 Q100 40 112 26 L134 34 L162 122 L146 128 L134 86 L140 214 L60 214 L66 84 L54 128 L38 122 Z",l:["M100 38 L100 92","M60 200 L140 200"]},
+  saree:{d:"M84 26 Q100 34 116 26 L124 66 L134 212 L66 212 L76 66 Z",l:["M116 26 L162 64 L152 204 L134 212","M88 140 L84 212","M98 140 L96 212","M108 140 L108 212","M76 140 L124 140"]},
+  blazer:{d:"M60 36 L86 26 L100 96 L114 26 L140 36 L166 162 L148 166 L138 98 L140 206 L60 206 L62 98 L52 166 L34 162 Z",l:["M86 26 L80 70 L100 96","M114 26 L120 70 L100 96","M100 96 L100 206","M70 150 L88 150"]},
+  bomber:{d:"M62 40 L86 30 Q100 38 114 30 L138 40 L166 150 L158 168 L146 162 L138 100 L140 194 Q100 206 60 194 L62 100 L54 162 L42 168 L34 150 Z",l:["M100 36 L100 200","M60 182 Q100 194 140 182","M146 150 L164 146","M54 150 L36 146"]},
+  hoodie:{d:"M64 46 Q68 14 100 12 Q132 14 136 46 L166 152 L148 158 L138 96 L138 202 L62 202 L62 96 L52 158 L34 152 Z",l:["M76 46 Q100 70 124 46","M76 150 L124 150 L118 180 L82 180 Z","M94 56 L92 84","M106 56 L108 84"]},
+  trousers:{d:"M66 26 L134 26 L144 214 L110 214 L100 82 L90 214 L56 214 Z",l:["M66 38 L134 38","M100 38 L100 82","M80 38 L84 120"]},
+  sneaker:{d:"M26 150 L38 108 Q70 112 92 94 L112 90 Q132 122 172 128 Q184 134 180 150 Z",l:["M24 150 L182 150 L180 164 L26 164 Z","M80 106 L96 128","M92 100 L108 122"]},
+  bag:{d:"M48 92 L152 92 L162 202 L38 202 Z",l:["M76 92 Q76 48 100 48 Q124 48 124 92","M48 112 L152 112"]}
+};
+let gid=0;
+function shade(hex,amt){const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;const t=amt<0?0:255,p=Math.abs(amt);r=Math.round((t-r)*p+r);g=Math.round((t-g)*p+g);b=Math.round((t-b)*p+b);return "#"+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1)}
+function lum(hex){const n=parseInt(hex.slice(1),16);return ((n>>16)*.3+(n>>8&255)*.59+(n&255)*.11)/255}
+function garment(type,col,o){
+  o=o||{};const s=SHAPES[type]||SHAPES.tee,id="g"+(++gid);
+  const ink=lum(col)>.55?"#1f1b19":"#ece6db";
+  const hanger=o.hanger?`<path d="M100 -18 q9 0 9 8 q0 7 -9 11 L100 8 M56 40 L100 8 L144 40" fill="none" stroke="#c8ad7f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`:"";
+  const num=o.num?`<text x="100" y="150" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-weight="700" font-size="62" fill="${ink}" fill-opacity=".92" letter-spacing="-2">${o.num}</text>`:"";
+  const stripes=s.stripe?s.stripe.map(l=>`<path d="${l}" stroke="${ink}" stroke-opacity=".85" stroke-width="4"/>`).join(""):"";
+  return `<svg viewBox="${o.hanger?"0 -26 200 266":"0 0 200 240"}"${o.hanger?' preserveAspectRatio="xMidYMin meet"':""} aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${shade(col,.22)}"/><stop offset=".55" stop-color="${col}"/><stop offset="1" stop-color="${shade(col,-.45)}"/></linearGradient><radialGradient id="${id}s" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>${o.hanger?"":`<ellipse cx="100" cy="226" rx="70" ry="8" fill="url(#${id}s)"/>`}${hanger}<path d="${s.d}" fill="url(#${id})"/>${stripes}${num}${s.l.map(l=>`<path d="${l}" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="1.2"/>`).join("")}<path d="${s.d}" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="1"/></svg>`;
+}
+const draw=(p,col,o)=>garment(p.type,col||p.cols[0],Object.assign({num:p.num},o||{}));
+const media=(p,col)=>p.img?`<img class="${p.cut?"cut":"ph"}" src="img/${p.img}.webp" alt="${esc(p.name)}" loading="lazy" draggable="false">`:draw(p,col);
+const HOOK=`<svg class="hook" viewBox="0 0 22 44" aria-hidden="true"><path d="M11 3a6 6 0 0 1 6 6c0 4-3 5.5-6 7.5V42" fill="none" stroke="#c8ad7f" stroke-width="2" stroke-linecap="round"/></svg>`;
+
+/* ---------- state ---------- */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const state={dept:"all",q:"",sort:"featured",cart:store.get("alpha.cart",[]),wish:new Set(store.get("alpha.wish",[]))};
+function save(){store.set("alpha.cart",state.cart);store.set("alpha.wish",[...state.wish])}
+
+/* ---------- hero rail ---------- */
+const RAIL=["b02", "b05", "b01", "b07", "b03", "b06", "b11", "b08", "b04", "b09", "b10", "b38", "b52"].map(id=>[id,byId(id).cols[0]]);
+function caption(p,col){
+  $("#caption").innerHTML=p?`<span class="label">${esc(p.fab)}</span><h1>${esc(p.name)}</h1><p>${esc(p.line)}</p><div class="row"><span class="price">${inr(p.price)}</span>${p.was?`<span class="was">${inr(p.was)}</span>`:""}</div><button class="btn solid" data-open="${p.id}" data-col="${col}">View piece</button>`
+  :`<span class="label">Premium wear · Pan-India delivery</span><h1>Pick something off the rail.</h1><p>Hover a piece and it turns to face you. Drag the rack to see more.</p><a class="btn solid" href="#shop">Shop the collection</a>`;
+}
+function buildRail(){
+  const items=RAIL.map(([id,col],i)=>{const p=byId(id);const tag=p.tag?`<span class="htag ${p.was?"sale":""}">${esc(p.tag)}</span>`:"";
+    return `<button class="hang ${p.img?"ph":""}" data-rail="${id}" data-col="${col}" style="--d:${(-i*0.9).toFixed(1)}s" aria-label="${esc(p.name)}"><div class="sw"><div class="lift">${p.img?HOOK+`<img src="img/${p.img}.webp" alt="" draggable="false">`:draw(p,col,{hanger:true})}${tag}</div></div></button>`}).join("");
+  $("#track").innerHTML=items+items+items+items;
+  // size photo hangers to their image width
+  setTimeout(()=>$$("#track .hang.ph img").forEach(im=>{const fit=()=>{const h=im.closest(".hang");h.style.setProperty("--w",Math.round(im.naturalWidth/im.naturalHeight*(innerWidth<720?190:250)*1.1+36)+"px")};im.complete?fit():im.addEventListener("load",fit)}));
+  caption(null);
+  const rail=$("#rail"),track=$("#track");
+  let off=0,speed=22,target=22,drag=null,moved=0,last=performance.now(),half=0,hot=null;
+  function measure(){if(!hot)half=track.scrollWidth/4}measure();addEventListener("resize",measure);
+  function setHot(el){if(hot===el)return;hot&&hot.classList.remove("on");hot=el;rail.classList.toggle("hot",!!el);if(el){el.classList.add("on");caption(byId(el.dataset.rail),el.dataset.col);target=0}else target=still?0:22}
+  rail.addEventListener("pointerover",e=>{const h=e.target.closest(".hang");if(h&&!drag)setHot(h)});
+  rail.addEventListener("pointerleave",()=>setHot(null));
+  rail.addEventListener("focusin",e=>{const h=e.target.closest(".hang");h&&setHot(h)});
+  rail.addEventListener("pointerdown",e=>{drag={x:e.clientX,o:off};moved=0});
+  addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x;moved=Math.max(moved,Math.abs(dx));if(moved>6){off=drag.o+dx;setHot(null)}});
+  addEventListener("pointerup",()=>{drag=null});
+  rail.addEventListener("click",e=>{const h=e.target.closest(".hang");if(!h)return;if(moved>6){e.stopPropagation();return}quickView(h.dataset.rail,h.dataset.col)},true);
+  if(still)target=speed=0;
+  let vis=true;new IntersectionObserver(es=>{vis=es[0].isIntersecting}).observe(rail);
+  (function tick(now){const dt=Math.min((now-last)/1000,.05);last=now;
+    if(vis){speed+=(target-speed)*.08;if(!drag)off-=speed*dt;if(half){while(off<=-half)off+=half;while(off>0)off-=half}track.style.transform=`translate3d(${off}px,0,0)`}
+    requestAnimationFrame(tick)})(last);
+}
+
+/* ---------- looks ---------- */
+const POS={L:[-90,-6,-7,-250,4,-11],C:[0,-24,0,0,-34,0],R:[90,6,7,250,10,11],B:[0,70,-2,0,150,-3],BL:[-60,60,-4,-130,150,-8],BR:[60,60,4,130,150,8]};
+const LOOKS=[
+  {name:"Everyday",items:[["b10","","L"],["b42","","B"],["b02","","C"]]},
+  {name:"Street",items:[["b11","","L"],["b04","","B"],["b38","","C"]]},
+  {name:"Evening",items:[["b08","","L"],["b09","","R"],["b06","","C"]]},
+  {name:"Easy ethnic",items:[["b52","","L"],["b07","","R"],["b05","","C"]]}
+];
+LOOKS.forEach(L=>L.items.forEach(it=>{if(!it[1])it[1]=byId(it[0]).cols[0]}));
+let look=0,focus=null;
+function renderLook(){
+  const L=LOOKS[look];
+  const items=L.items.map(([id,col,pos],i)=>{const p=byId(id),v=POS[pos];
+    return `<button class="lk" data-look="${i}" style="--x0:${v[0]};--y0:${v[1]};--r0:${v[2]};--x1:${v[3]};--y1:${v[4]};--r1:${v[5]};z-index:${pos==="C"?3:pos==="B"?1:2}" aria-label="${esc(p.name)}">${media(p,col)}</button>`}).join("");
+  let fx="";
+  if(focus){const p=byId(focus.id);
+    fx=`<div class="focus"><div class="big" id="fBig">${media(p,focus.col)}</div><div class="info"><span class="label">Look ${String(look+1).padStart(2,"0")} · ${L.name}</span><h3>${esc(p.name)}</h3><p>${esc(p.line)}</p><span class="price">${inr(p.price)}</span><div class="opts" id="fCols">${p.cols.map(c=>`<button class="col ${c===focus.col?"on":""}" style="background:${c}" data-fcol="${c}" aria-label="Colour"></button>`).join("")}</div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn solid" data-open="${p.id}" data-col="${focus.col}">Choose size</button><button class="btn ghost" id="fBack">Back to look</button></div></div></div>`}
+  $("#table").innerHTML=`<div class="stack">${focus?"":`<span class="label tip">Hover to spread · click a piece</span>`}${items}</div>${fx}
+    <div class="num">${String(look+1).padStart(2,"0")}<small>${L.name}</small></div>
+    <div class="pips">${LOOKS.map((_,i)=>`<button class="${i===look?"on":""}" data-pip="${i}" aria-label="Look ${i+1}"></button>`).join("")}</div>
+    <div class="ctl"><button class="arrow" data-step="-1" aria-label="Previous look">←</button><button class="arrow" data-step="1" aria-label="Next look">→</button></div>`;
+  const back=$("#fBack");back&&back.addEventListener("click",()=>{focus=null;renderLook()});
+}
+$("#table").addEventListener("click",e=>{
+  const lk=e.target.closest(".lk");if(lk){const [id,col]=LOOKS[look].items[+lk.dataset.look];focus={id,col};renderLook();return}
+  const st=e.target.closest("[data-step]");if(st){look=(look+ +st.dataset.step+LOOKS.length)%LOOKS.length;focus=null;renderLook();return}
+  const pp=e.target.closest("[data-pip]");if(pp){look=+pp.dataset.pip;focus=null;renderLook();return}
+  const fc=e.target.closest("[data-fcol]");if(fc&&focus){focus.col=fc.dataset.fcol;$("#fBig").innerHTML=draw(byId(focus.id),focus.col);$$("#fCols .col").forEach(b=>b.classList.toggle("on",b===fc));$("#table [data-open]").dataset.col=focus.col}
+});
+
+/* ---------- departments, grid ---------- */
+function renderNav(){
+  $("#nav").innerHTML=DEPTS.slice(1,7).map(d=>`<button data-dept="${d.id}" class="${state.dept===d.id?"on":""}">${{tees:"Tees",ethnic:"Ethnic",kurtas:"Kurtas"}[d.id]||d.name}</button>`).join("");
+}
+function renderStrip(){const it=["Free shipping over ₹2,999","Cash on delivery available","15-day free returns","UPI · Cards · Netbanking via Razorpay","Handloom from Telangana, Andhra & Tamil Nadu"];$("#strip").innerHTML=[...it,...it].map(t=>`<span>${t}</span>`).join("")}
+function renderCats(){
+  $("#catCount").textContent=DEPTS.filter(d=>d.tile).length+" categories · "+P.length+" pieces";
+  $("#cats").innerHTML=DEPTS.filter(d=>d.tile).map(d=>{const n=P.filter(p=>p.cats.includes(d.id)).length;
+    return `<button class="cat ${d.img&&!d.cut?"photo":""}" data-dept="${d.id}"><span class="label">${String(n).padStart(2,"0")} pieces</span>${d.img?`<img class="${d.cut?"cut":"ph"}" src="img/${d.img}.webp" alt="" loading="lazy">`:garment(d.type,d.col)}<h3>${d.name}<small>${d.note}</small></h3></button>`}).join("");
+  $$(".cat").forEach(el=>{
+    el.addEventListener("pointermove",e=>{if(still)return;const r=el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`rotateY(${x*10}deg) rotateX(${-y*10}deg)`});
+    el.addEventListener("pointerleave",()=>{el.style.transform=""});
+  });
+}
+function renderChips(){$("#chips").innerHTML=DEPTS.map(d=>`<button class="chip ${state.dept===d.id?"on":""}" data-dept="${d.id}" aria-pressed="${state.dept===d.id}">${{tees:"Tees",ethnic:"Kurtis",kurtas:"Kurtas",jeans:"Jeans"}[d.id]||d.name}</button>`).join("")}
+function renderGrid(){
+  const q=state.q.trim().toLowerCase();
+  const list=(state.sort==="featured"?FEAT:P).filter(p=>(state.dept==="all"||p.cats.includes(state.dept))&&(!q||(p.name+" "+p.fab).toLowerCase().includes(q)));
+  const S={ord:(a,b)=>b.ord-a.ord,low:(a,b)=>a.price-b.price,high:(a,b)=>b.price-a.price}[state.sort];if(S)list.sort(S);
+  $("#grid").innerHTML=list.length?list.map(p=>`
+    <article class="card">
+      <div class="shot" data-open="${p.id}">
+        ${BEST.has(p.id)?`<span class="tag" style="color:var(--gold);border-color:var(--gold)">Bestseller</span>`:p.tag?`<span class="tag">${esc(p.tag)}</span>`:""}
+        ${media(p)}
+        <button class="heart ${state.wish.has(p.id)?"on":""}" data-wish="${p.id}" aria-label="Save ${esc(p.name)}" aria-pressed="${state.wish.has(p.id)}">${state.wish.has(p.id)?"♥":"♡"}</button>
+        <button class="quick" data-open="${p.id}">Quick view</button>
+      </div>
+      <div class="meta"><div><h3>${esc(p.name)}</h3><div class="fab">${esc(p.fab)}</div></div><span class="price">${inr(p.price)}</span></div>
+      <div class="bought"><b>${kfmt(p.ord)}+</b> ordered this month</div>
+      <div class="dots">${p.cols.map(c=>`<i style="background:${c}"></i>`).join("")}</div>
+    </article>`).join(""):`<p class="empty">Nothing matches “${esc(state.q)}”. Try another word or clear the search.</p>`;
+}
+function renderBest(){
+  const top=RANKED.slice(0,6),max=top[0].ord;
+  $("#bestList").innerHTML=top.map((p,i)=>`<button class="bc" data-open="${p.id}" aria-label="Number ${i+1}: ${esc(p.name)}"><span class="rk">${i+1}</span><span class="th">${media(p)}</span><span style="min-width:0"><h3>${esc(p.name)}</h3><span class="od">${kfmt(p.ord)}+ ordered this month</span><span class="price">${inr(p.price)}</span><span class="meter"><i style="width:${Math.round(p.ord/max*100)}%"></i></span></span></button>`).join("");
+}
+function setSort(v){state.sort=v;$("#sort").value=v;renderGrid()}
+function openMenu(){
+  const cnt=id=>P.filter(p=>p.cats.includes(id)).length;
+  openLayer(`<aside class="side" role="dialog" aria-modal="true" aria-label="Menu"><div class="dh"><a class="brand" href="#top" data-close>${LOGO()}<span class="mark">ALPHA</span></a><button class="x" style="position:static" data-close aria-label="Close menu">✕</button></div>
+    <nav aria-label="Main">
+      <span class="label grp">Shop</span>
+      <button class="sl hl" data-menu="best">Most ordered <small>Top 6</small></button>
+      <button class="sl" data-menu="all">New arrivals <small>${P.length}</small></button>
+      ${DEPTS.slice(1).map(d=>`<button class="sl" data-dept="${d.id}">${d.name} <small>${cnt(d.id)}</small></button>`).join("")}
+      <span class="label grp" style="padding-top:22px">Explore</span>
+      <button class="sl" data-go="looks">The looks <small>${String(LOOKS.length).padStart(2,"0")}</small></button>
+      <button class="sl" data-go="turntable">3D viewer <small>360°</small></button>
+      <button class="sl" data-go="fabrics">Fabric notes <small>03</small></button>
+      <div class="minor"><button data-go="shop">Track order</button><button data-go="shop">Returns</button><button data-go="shop">Size guide</button><button data-go="shop">Contact</button></div>
+    </nav></aside>`);
+  $("#burger").setAttribute("aria-expanded","true");$("#burger").setAttribute("aria-label","Close menu");
+}
+function renderCount(){$("#count").textContent=state.cart.reduce((a,b)=>a+b.qty,0)}
+function setDept(id,scroll){state.dept=id;renderNav();renderChips();renderGrid();if(scroll)$("#shop").scrollIntoView({behavior:"smooth",block:"start"})}
+
+let tt;function toast(msg){let t=$(".toast");if(!t){t=document.createElement("div");t.className="toast";t.setAttribute("role","status");document.body.appendChild(t)}t.textContent=msg;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2200)}
+
+/* ---------- modal / drawer ---------- */
+function close(){$("#layer").innerHTML="";document.body.style.overflow="";const b=$("#burger");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Open menu")}
+function openLayer(html){$("#layer").innerHTML=`<div class="scrim" data-close></div>`+html;document.body.style.overflow="hidden";const f=$("#layer").querySelector("button,input");f&&f.focus()}
+function quickView(id,startCol){
+  const p=byId(id);let col=startCol&&p.cols.includes(startCol)?startCol:p.cols[0],size=p.sizes.length===1?p.sizes[0]:null;
+  openLayer(`<div class="modal" role="dialog" aria-modal="true" aria-label="${esc(p.name)}">
+    <button class="x" data-close aria-label="Close">✕</button>
+    <div class="viewer" id="viewer"><div class="obj" id="obj">${media(p,col)}</div><span class="hint">${p.img?"Drag to tilt":"Drag to turn"}</span></div>
+    <div class="pd">
+      <span class="label">${p.cats.map(c=>DEPTS.find(d=>d.id===c).name).join(" · ")}</span>
+      <h2>${esc(p.name)}</h2>
+      <div><span class="price" style="font-size:18px">${inr(p.price)}</span>${p.was?`<span class="was">${inr(p.was)}</span>`:""}</div>
+      <p>${esc(p.line)} ${esc(p.fab)}. Inclusive of all taxes.</p>
+      <div style="display:grid;gap:10px"><span class="label">Colour</span><div class="opts" id="cols">${p.cols.map(c=>`<button class="col ${c===col?"on":""}" style="background:${c}" data-qcol="${c}" aria-label="Colour"></button>`).join("")}</div></div>
+      <div style="display:grid;gap:10px"><span class="label">Size</span><div class="opts" id="sizes">${p.sizes.map(s=>`<button class="sz ${s===size?"on":""}" data-size="${s}">${s}</button>`).join("")}</div><p class="err" id="szErr" hidden>Choose a size to add this to your bag.</p></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn solid" id="add">Add to bag</button><button class="btn ghost" data-wish="${p.id}">${state.wish.has(p.id)?"Saved":"Save"}</button></div>
+      <p style="font-size:12px">Cash on delivery available · 15-day returns</p>
+    </div></div>`);
+  $("#cols").addEventListener("click",e=>{const b=e.target.closest("[data-qcol]");if(!b)return;col=b.dataset.qcol;$$("#cols .col").forEach(x=>x.classList.toggle("on",x===b));if(!p.img)$("#obj").innerHTML=draw(p,col)});
+  $("#sizes").addEventListener("click",e=>{const b=e.target.closest("[data-size]");if(!b)return;size=b.dataset.size;$("#szErr").hidden=true;$$("#sizes .sz").forEach(x=>x.classList.toggle("on",x===b))});
+  $("#add").addEventListener("click",()=>{if(!size){$("#szErr").hidden=false;return}addToCart(p.id,size,col);close();toast("Added to bag · "+p.name)});
+  const v=$("#viewer"),o=$("#obj");let down=false,sx=0,ry=0,base=0;
+  v.addEventListener("pointerdown",e=>{down=true;sx=e.clientX;base=ry;v.setPointerCapture(e.pointerId)});
+  v.addEventListener("pointermove",e=>{if(!down)return;ry=base+(e.clientX-sx)*.5;if(p.img)ry=Math.max(-24,Math.min(24,ry));o.style.transform=`rotateY(${ry}deg)`});
+  const up=()=>{down=false};v.addEventListener("pointerup",up);v.addEventListener("pointercancel",up);
+}
+function addToCart(id,size,col){const ex=state.cart.find(l=>l.id===id&&l.size===size&&l.col===col);ex?ex.qty++:state.cart.push({id,size,col,qty:1});save();renderCount()}
+function totals(pay){const sub=state.cart.reduce((a,l)=>a+byId(l.id).price*l.qty,0);const ship=sub===0||sub>=2999?0:149,cod=pay==="cod"&&sub>0?49:0;return {sub,ship,cod,total:sub+ship+cod}}
+let pay="razorpay",step="bag";const form={};let order={};
+function sumHtml(t){return `<div class="sum"><div><span>Subtotal</span><span>${inr(t.sub)}</span></div><div><span>Shipping</span><span>${t.ship?inr(t.ship):"Free"}</span></div>${t.cod?`<div><span>COD fee</span><span>${inr(t.cod)}</span></div>`:""}<div class="tot"><span>Total</span><span>${inr(t.total)}</span></div></div>`}
+function shell(body,foot){return `<aside class="drawer" role="dialog" aria-modal="true" aria-label="Your bag"><div class="dh"><h2>${step==="addr"?"Delivery":"Your bag"}</h2><button class="x" style="position:static" data-close aria-label="Close bag">✕</button></div><div class="dbody">${body}</div>${foot?`<div class="dfoot">${foot}</div>`:""}</aside>`}
+function drawer(){
+  const t=totals(pay);
+  if(step==="done")return shell(`<div class="done"><span class="label">Order confirmed</span><h3>Thank you.</h3><p style="color:var(--mute);margin:0">Order <b style="font-family:var(--mono);color:var(--gold)">${esc(order.id)}</b> is placed. ${order.note}</p><button class="btn ghost" data-close>Keep shopping</button></div><p class="demo">Demo checkout. No payment was taken and no order was sent.</p>`,"");
+  if(!state.cart.length)return shell(`<div class="done"><h3>Your bag is empty</h3><p style="color:var(--mute);margin:0">Pieces you add will wait here.</p><button class="btn solid" data-close data-go="shop">Shop new arrivals</button></div>`,"");
+  if(step==="bag"){
+    const body=state.cart.map((l,i)=>{const p=byId(l.id);return `<div class="line"><div class="th">${media(p,l.col)}</div><div><h3>${esc(p.name)}</h3><small>Size ${esc(l.size)}</small><div class="qty"><button data-dq="${i}" aria-label="Decrease">−</button>${l.qty}<button data-iq="${i}" aria-label="Increase">+</button><button class="rm" data-rm="${i}">Remove</button></div></div><span class="price">${inr(p.price*l.qty)}</span></div>`}).join("");
+    return shell(body,`<div class="pay" role="radiogroup" aria-label="Payment method">
+      <label><input type="radio" name="pay" id="payRzp" value="razorpay" ${pay==="razorpay"?"checked":""}>Pay online<small>UPI · Cards · Netbanking</small></label>
+      <label><input type="radio" name="pay" id="payCod" value="cod" ${pay==="cod"?"checked":""}>Cash on delivery<small>₹49 handling fee</small></label></div>
+      ${sumHtml(t)}<button class="btn solid" id="toAddr">Continue to address</button>${t.sub<2999?`<p class="demo">Add ${inr(2999-t.sub)} more for free shipping.</p>`:""}`);
+  }
+  return shell(`<form id="addr" style="display:grid;gap:14px;padding:16px 0" novalidate>
+    <div class="fld"><label class="label" for="fName">Full name</label><input id="fName" autocomplete="name" value="${esc(form.name||"")}"></div>
+    <div class="fld"><label class="label" for="fPhone">Mobile number</label><input id="fPhone" inputmode="numeric" autocomplete="tel" placeholder="10-digit number" value="${esc(form.phone||"")}"></div>
+    <div class="fld"><label class="label" for="fAddr">Address</label><input id="fAddr" autocomplete="street-address" value="${esc(form.addr||"")}"></div>
+    <div class="fld"><label class="label" for="fPin">PIN code</label><input id="fPin" inputmode="numeric" autocomplete="postal-code" placeholder="6 digits" value="${esc(form.pin||"")}"></div>
+    <p class="err" id="fErr" hidden></p><button type="button" class="rm" id="back" style="justify-self:start;margin:0">← Back to bag</button></form>`,
+    `${sumHtml(t)}<button class="btn solid" id="place">${pay==="cod"?"Place COD order":"Pay "+inr(t.total)+" with Razorpay"}</button>`);
+}
+function openBag(){openLayer(drawer());wire()}
+function rerender(){if(!$(".drawer"))return openBag();$("#layer").innerHTML=`<div class="scrim" data-close></div>`+drawer();wire()}
+function wire(){
+  $$("#layer input[name=pay]").forEach(r=>r.addEventListener("change",()=>{pay=r.value;rerender()}));
+  const a=$("#toAddr");a&&a.addEventListener("click",()=>{step="addr";rerender()});
+  const b=$("#back");b&&b.addEventListener("click",()=>{grab();step="bag";rerender()});
+  const c=$("#place");c&&c.addEventListener("click",place);
+}
+function grab(){if(!$("#addr"))return;Object.assign(form,{name:$("#fName").value.trim(),phone:$("#fPhone").value.replace(/\D/g,""),addr:$("#fAddr").value.trim(),pin:$("#fPin").value.replace(/\D/g,"")})}
+function place(){
+  grab();const e=$("#fErr");
+  const msg=!form.name?"Enter the name for delivery.":form.phone.length!==10?"Enter a 10-digit mobile number.":!form.addr?"Enter the delivery address.":form.pin.length!==6?"Enter a 6-digit PIN code.":"";
+  if(msg){e.textContent=msg;e.hidden=false;return}
+  const t=totals(pay);
+  if(pay==="cod"&&t.total>15000){e.textContent="Cash on delivery is available up to ₹15,000. Choose online payment for this order.";e.hidden=false;return}
+  order={id:"ALPHA-"+Math.floor(100000+Math.random()*900000),note:pay==="cod"?`Keep ${inr(t.total)} ready at delivery.`:`In the live store, Razorpay Checkout opens here for ${inr(t.total)}.`};
+  state.cart=[];save();renderCount();step="done";rerender();
+}
+
+/* ---------- global events ---------- */
+document.addEventListener("click",e=>{
+  const t=e.target;
+  const w=t.closest("[data-wish]");if(w){e.stopPropagation();const id=w.dataset.wish;state.wish.has(id)?state.wish.delete(id):state.wish.add(id);save();renderGrid();if(w.closest(".pd"))w.textContent=state.wish.has(id)?"Saved":"Save";toast(state.wish.has(id)?"Saved to wishlist":"Removed from wishlist");return}
+  const o=t.closest("[data-open]");if(o){quickView(o.dataset.open,o.dataset.col);return}
+  const c=t.closest("[data-close]");if(c){const go=c.dataset.go;close();if(step==="done")step="bag";if(go)$("#"+go).scrollIntoView({behavior:"smooth"});return}
+  const mn=t.closest("[data-menu]");if(mn){close();state.dept="all";renderNav();renderChips();setSort(mn.dataset.menu==="best"?"ord":"featured");$("#"+(mn.dataset.menu==="best"?"best":"shop")).scrollIntoView({behavior:"smooth"});return}
+  const gg=t.closest(".side [data-go]");if(gg){close();$("#"+gg.dataset.go).scrollIntoView({behavior:"smooth"});return}
+  const d=t.closest("[data-dept]");if(d){if(d.closest(".side"))close();setDept(d.dataset.dept,true);return}
+  const iq=t.closest("[data-iq]");if(iq){state.cart[+iq.dataset.iq].qty++;save();renderCount();rerender();return}
+  const dq=t.closest("[data-dq]");if(dq){const i=+dq.dataset.dq,l=state.cart[i];l.qty>1?l.qty--:state.cart.splice(i,1);save();renderCount();rerender();return}
+  const rm=t.closest("[data-rm]");if(rm){state.cart.splice(+rm.dataset.rm,1);save();renderCount();rerender();return}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#layer").innerHTML){close();if(step==="done")step="bag"}});
+$("#bagBtn").addEventListener("click",()=>{if(step==="done")step="bag";openBag()});
+$("#q").addEventListener("input",e=>{state.q=e.target.value;renderGrid()});
+$("#burger").addEventListener("click",()=>{$("#layer .side")?close():openMenu()});
+$("#sort").addEventListener("change",e=>setSort(e.target.value));
+$("#seeBest").addEventListener("click",()=>{state.dept="all";renderNav();renderChips();setSort("ord");$("#shop").scrollIntoView({behavior:"smooth"})});
+$("#logoSlot").innerHTML=LOGO();$$(".logoSlot").forEach(e=>e.innerHTML=LOGO());
+
+buildRail();renderStrip();renderBest();renderLook();renderNav();renderCats();renderChips();renderGrid();renderCount();
+
+/* ---------- 3D turntable on a gold plinth ---------- */
+const TT=[["b01","Tee"],["b02","Hoodie"],["b06","Dress"],["b05","Kurti"],["b03","Jeans"]];
+let ttP=byId(TT[0][0]),ttCol=ttP.cols[0],ttRebuild=()=>{};
+function ttUI(){
+  $("#ttTypes").innerHTML=TT.map(([id,n])=>`<button class="chip ${id===ttP.id?"on":""}" data-tt="${id}" aria-pressed="${id===ttP.id}">${n}</button>`).join("");
+  $("#ttCols").innerHTML=ttP.cols.map(c=>`<button class="col ${c===ttCol?"on":""}" style="background:${c}" data-ttc="${c}" aria-label="Colour"></button>`).join("");
+  $("#ttSpec").innerHTML=`<dt>Piece</dt><dd>${esc(ttP.name)}</dd><dt>Fabric</dt><dd>${esc(ttP.fab)}</dd><dt>Price</dt><dd class="price" style="justify-self:start">${inr(ttP.price)}</dd>`;
+}
+$("#ttTypes").addEventListener("click",e=>{const b=e.target.closest("[data-tt]");if(!b)return;ttP=byId(b.dataset.tt);ttCol=ttP.cols[0];ttUI();ttRebuild()});
+$("#ttCols").addEventListener("click",e=>{const b=e.target.closest("[data-ttc]");if(!b)return;ttCol=b.dataset.ttc;ttUI();ttRebuild(true)});
+$("#ttShop").addEventListener("click",()=>quickView(ttP.id,ttCol));
+ttUI();
+
+function turntable(){
+  const canvas=$("#tt"),box=$("#plinth");
+  const fallback=()=>{canvas.hidden=true;const f=document.createElement("div");f.className="fallback";box.appendChild(f);ttRebuild=()=>{f.innerHTML=media(ttP,ttCol)};ttRebuild()};
+  if(!window.THREE)return fallback();
+  let R;try{R=new THREE.WebGLRenderer({canvas,antialias:true})}catch(e){return fallback()}
+  R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0x050504,1);
+  R.outputEncoding=THREE.sRGBEncoding;R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
+  const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x050504,12,22);
+  const cam=new THREE.PerspectiveCamera(30,1,.1,60);cam.position.set(0,.9,12.5);cam.lookAt(0,-.2,0);
+  scene.add(new THREE.HemisphereLight(0x3a3530,0x050504,.9));
+  const key=new THREE.SpotLight(0xffe7cc,2.6,30,.5,.6);key.position.set(-3,8,6);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);
+  const rim=new THREE.DirectionalLight(0x9fb3d4,1.2);rim.position.set(4,2,-6);scene.add(rim);
+  const fill=new THREE.PointLight(0xc8ad7f,.8,20);fill.position.set(5,0,4);scene.add(fill);
+  // plinth
+  const gold=new THREE.MeshStandardMaterial({color:0xc8ad7f,metalness:1,roughness:.28});
+  const stone=new THREE.MeshStandardMaterial({color:0x0f0d0c,metalness:.1,roughness:.6});
+  const top=new THREE.Mesh(new THREE.CylinderGeometry(2.2,2.2,.28,96),stone);top.position.y=-2.2;top.receiveShadow=true;scene.add(top);
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(2.2,.035,12,128),gold);ring.rotation.x=Math.PI/2;ring.position.y=-2.06;scene.add(ring);
+  const base=new THREE.Mesh(new THREE.CylinderGeometry(2.45,2.55,.5,96),stone);base.position.y=-2.58;scene.add(base);
+  const ring2=new THREE.Mesh(new THREE.TorusGeometry(2.45,.03,12,128),gold);ring2.rotation.x=Math.PI/2;ring2.position.y=-2.34;scene.add(ring2);
+  const pivot=new THREE.Group();scene.add(pivot);
+  let mesh=null;
+  const lin=h=>new THREE.Color(h).convertSRGBToLinear();
+  function shapeFrom(d){
+    const t=d.match(/[MLQZ]|-?\d*\.?\d+/g),s=new THREE.Shape();let i=0;
+    const X=v=>(+v-100),Y=v=>-(+v-120);
+    while(i<t.length){const c=t[i++];
+      if(c==="M")s.moveTo(X(t[i++]),Y(t[i++]));
+      else if(c==="L")s.lineTo(X(t[i++]),Y(t[i++]));
+      else if(c==="Q"){const a=X(t[i++]),b=Y(t[i++]),x=X(t[i++]),y=Y(t[i++]);s.quadraticCurveTo(a,b,x,y)}
+    }
+    return s;
+  }
+  function printTex(p,col){
+    const c=document.createElement("canvas");c.width=512;c.height=512;const g=c.getContext("2d");
+    const ink=lum(col)>.55?"#1f1b19":"#ece6db";g.fillStyle=ink;g.textAlign="center";
+    if(p.num){g.font="700 230px Manrope, Arial, sans-serif";g.fillText(p.num,256,330)}
+    else{g.font="500 54px 'Bodoni Moda', Georgia, serif";g.fillText("A L P H A",256,200)}
+    const tx=new THREE.CanvasTexture(c);tx.encoding=THREE.sRGBEncoding;return tx;
+  }
+  const loader=new THREE.TextureLoader();
+  ttRebuild=function(colorOnly){
+    if(colorOnly)return;
+    loader.load("img/"+ttP.img+".webp",tex=>{
+      tex.encoding=THREE.sRGBEncoding;tex.anisotropy=8;
+      if(mesh){pivot.remove(mesh);mesh.geometry.dispose();mesh.material.map&&mesh.material.map.dispose();mesh.material.dispose()}
+      const h=4.6,w=h*tex.image.width/tex.image.height;
+      mesh=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex,transparent:true,alphaTest:.05,side:THREE.DoubleSide}));
+      mesh.position.y=-2.06+h/2-h*0.06;mesh.userData.base=mesh.position.y;pivot.add(mesh);
+    });
+  };
+  ttRebuild();
+  function size(){const r=box.getBoundingClientRect();R.setSize(r.width,r.height,false);cam.aspect=r.width/Math.max(r.height,1);cam.updateProjectionMatrix()}
+  new ResizeObserver(size).observe(box);size();
+  let ry=0,vel=still?0:.45,drag=null,auto=!still,t0=performance.now();
+  box.addEventListener("pointerdown",e=>{drag={x:e.clientX,r:ry};auto=false;box.setPointerCapture(e.pointerId)});
+  box.addEventListener("pointermove",e=>{if(drag)ry=Math.max(-.75,Math.min(.75,drag.r+(e.clientX-drag.x)*.006))});
+  const up=()=>{if(drag){drag=null;if(!still)setTimeout(()=>auto=true,1800)}};box.addEventListener("pointerup",up);box.addEventListener("pointercancel",up);
+  let vis=true,last=performance.now();new IntersectionObserver(es=>{vis=es[0].isIntersecting}).observe(box);
+  (function loop(now){requestAnimationFrame(loop);const dt=Math.min((now-last)/1000,.05);last=now;
+    if(!vis||document.hidden)return;if(auto)ry+=(Math.sin((now-t0)/1600)*.55-ry)*.05;pivot.rotation.y=ry;
+    if(mesh&&!still)mesh.position.y=mesh.userData.base+Math.sin(now/1100)*.05;R.render(scene,cam)})(last);
+}
+turntable();
+})();
+</script>
+
+</body>
+</html>
